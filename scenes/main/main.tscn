@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://h7fgtowqjhqi"]
+[gd_scene load_steps=4 format=3 uid="uid://h7fgtowqjhqi"]
 
+[ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_3pcrp"]
 [ext_resource type="PackedScene" uid="uid://bxde3xsrhxjfo" path="res://scenes/player/player.tscn" id="1_7crvo"]
 
 [sub_resource type="Curve2D" id="Curve2D_65fq5"]
@@ -9,6 +10,7 @@ _data = {
 point_count = 7
 
 [node name="Main" type="Node"]
+script = ExtResource("1_3pcrp")
 
 [node name="Player" parent="." instance=ExtResource("1_7crvo")]
 
@@ -28,3 +30,5 @@ position = Vector2(240, 450)
 curve = SubResource("Curve2D_65fq5")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-1, 2)
+rotation = -1.10715
