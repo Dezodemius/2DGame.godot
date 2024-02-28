@@ -6,8 +6,17 @@ public partial class Player : Area2D
 	[Export]
 	public int Speed { get; set; } = 400; // pixels
 
+	[Signal]
+	public delegate void HitEventHandler();
+
 	public Vector2 ScreenSize;
 
+	public void Start(Vector2 position)
+	{
+		Position = position;
+		Show();
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+	}
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
@@ -54,5 +63,13 @@ public partial class Player : Area2D
 			animatedSprite2D.Animation = "up";
 			animatedSprite2D.FlipV = velocity.Y > 0;
 		}
+	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		Hide();
+		EmitSignal(SignalName.Hidden);
+
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 	}
 }
