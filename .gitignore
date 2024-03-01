@@ -11,3 +11,7 @@ export_presets.cfg
 
 
 .idea/
+
+export/
+
+android/
