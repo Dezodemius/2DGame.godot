@@ -83,6 +83,11 @@ public partial class HUD : CanvasLayer
 		GetNode<Label>("ScoreLabel").Show();
 	}
 
+	private void OnRecordsButtonPressed()
+	{
+		
+	}
+
 	private void OnMessageTimerTimeout()
 	{
 		GetNode<Label>("Message").Hide();

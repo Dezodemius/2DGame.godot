@@ -64,15 +64,24 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -104.0
-offset_top = -192.0
+offset_top = -240.0
 offset_right = 96.0
-offset_bottom = -92.0
+offset_bottom = -140.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_vxac0")
 theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_ark04")
 text = "Start"
+
+[node name="ShowRecordsButton" type="Button" parent="."]
+offset_left = 136.0
+offset_top = 592.0
+offset_right = 336.0
+offset_bottom = 652.0
+theme_override_fonts/font = ExtResource("1_vxac0")
+theme_override_font_sizes/font_size = 40
+text = "Records"
 
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -81,4 +90,5 @@ one_shot = true
 [node name="UpdateRecordRequest" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="ShowRecordsButton" to="." method="OnRecordsButtonPressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]
