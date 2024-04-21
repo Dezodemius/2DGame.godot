@@ -1,21 +1,28 @@
 using Godot;
 
 public partial class Main : Node
-{
-	// Don't forget to rebuild the project so the editor knows about the new export variable.
+{	
+
 	[Export]
 	public PackedScene MobScene { get; set; }
 
 	private int _score;
+	private int _record;
 
 	public void GameOver()
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<HUD>("HUD").ShowGameOver();
-		
-		GetNode<AudioStreamPlayer>("Music").Stop();		
+
+		GetNode<AudioStreamPlayer>("Music").Stop();
 		GetNode<AudioStreamPlayer>("DeathSound").Play();
+
+		if (_score > _record)
+		{
+			_record = _score;
+			GetNode<HUD>("HUD").UpdateRecord(_record);
+		}
 	}
 
 	public void NewGame()
@@ -28,12 +35,10 @@ public partial class Main : Node
 
 		GetNode<Timer>("StartTimer").Start();
 
-		var hud = GetNode<HUD>("HUD");
-		hud.UpdateScore(_score);
-		hud.ShowMessage("Get Ready!");
-		
+		GetNode<HUD>("HUD").OnNewGame();
+
 		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
-		
+
 		GetNode<AudioStreamPlayer>("Music").Play();
 	}
 
