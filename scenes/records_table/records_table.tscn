@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3lx561nmd4pm"]
+[gd_scene load_steps=6 format=3 uid="uid://c3lx561nmd4pm"]
 
+[ext_resource type="Script" path="res://scenes/records_table/records_table.cs" id="1_j27sv"]
 [ext_resource type="PackedScene" uid="uid://du5xpkjwgrvj0" path="res://scenes/records_table/table_row.tscn" id="1_jkk4d"]
 [ext_resource type="PackedScene" uid="uid://bfw3vfrkuplnn" path="res://scenes/records_table/table_heads/table_head_cell.tscn" id="2_5dbmk"]
 [ext_resource type="PackedScene" uid="uid://bor7v1rdb4sm2" path="res://scenes/records_table/table_heads/table_id_head_cell.tscn" id="2_5okis"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_j27sv")
 
 [node name="Table" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -60,3 +62,5 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_who5e")
 theme_override_font_sizes/font_size = 40
 text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]

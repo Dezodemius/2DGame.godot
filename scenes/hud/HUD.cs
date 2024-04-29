@@ -88,6 +88,10 @@ public partial class HUD : CanvasLayer
 	private void OnRecordsButtonPressed()
 	{
 		GetNode<Button>("StartButton").Hide();
+		GetNode<Button>("ShowRecordsButton").Hide();
+		GetNode<Label>("Message").Hide();
+	
+	  GetNode<Control>("RecordsTable").Show();
 	}
 
 	private void OnMessageTimerTimeout()
