@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3lx561nmd4pm"]
+[gd_scene load_steps=5 format=3 uid="uid://c3lx561nmd4pm"]
 
 [ext_resource type="PackedScene" uid="uid://du5xpkjwgrvj0" path="res://scenes/records_table/table_row.tscn" id="1_jkk4d"]
 [ext_resource type="PackedScene" uid="uid://bfw3vfrkuplnn" path="res://scenes/records_table/table_heads/table_head_cell.tscn" id="2_5dbmk"]
 [ext_resource type="PackedScene" uid="uid://bor7v1rdb4sm2" path="res://scenes/records_table/table_heads/table_id_head_cell.tscn" id="2_5okis"]
+[ext_resource type="FontFile" uid="uid://dw8ks4o35ltr7" path="res://fonts/Xolonium-Regular.ttf" id="4_who5e"]
 
 [node name="RecordsTable" type="Control"]
 layout_mode = 3
@@ -16,7 +17,7 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 60.0
+offset_bottom = 650.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
 
@@ -26,7 +27,7 @@ size_flags_vertical = 2
 
 [node name="TableIdHeadCell" parent="Table/TableRow" instance=ExtResource("2_5okis")]
 layout_mode = 2
-text = "Id"
+text = "Top"
 uppercase = true
 
 [node name="UserColumnHead" parent="Table/TableRow" instance=ExtResource("2_5dbmk")]
@@ -41,3 +42,21 @@ size_flags_horizontal = 8
 text = "Score
 "
 uppercase = true
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -65.0
+offset_right = 100.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_who5e")
+theme_override_font_sizes/font_size = 40
+text = "Back"

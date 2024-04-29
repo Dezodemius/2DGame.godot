@@ -87,7 +87,7 @@ public partial class HUD : CanvasLayer
 
 	private void OnRecordsButtonPressed()
 	{
-		
+		GetNode<Button>("StartButton").Hide();
 	}
 
 	private void OnMessageTimerTimeout()
