@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3lx561nmd4pm"]
+
+[ext_resource type="PackedScene" uid="uid://du5xpkjwgrvj0" path="res://scenes/records_table/table_row.tscn" id="1_jkk4d"]
+[ext_resource type="PackedScene" uid="uid://bfw3vfrkuplnn" path="res://scenes/records_table/table_head_cell.tscn" id="2_5dbmk"]
+
+[node name="RecordsTable" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Table" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TableRow" parent="Table" instance=ExtResource("1_jkk4d")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="IdColumnHead" parent="Table/TableRow" instance=ExtResource("2_5dbmk")]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Id"
+
+[node name="UserColumnHead" parent="Table/TableRow" instance=ExtResource("2_5dbmk")]
+layout_mode = 2
+text = "User"
+
+[node name="ScoreColumnHead" parent="Table/TableRow" instance=ExtResource("2_5dbmk")]
+layout_mode = 2
+text = "Score
+"

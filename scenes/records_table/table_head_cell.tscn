@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfw3vfrkuplnn"]
+
+[ext_resource type="FontFile" uid="uid://dw8ks4o35ltr7" path="res://fonts/Xolonium-Regular.ttf" id="1_mnn6l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0apc"]
+bg_color = Color(0, 0.290196, 1, 0.117647)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="TableHeadCell" type="Label"]
+custom_minimum_size = Vector2(100, 30)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -330.0
+offset_bottom = -680.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_mnn6l")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_d0apc")
+horizontal_alignment = 1
+vertical_alignment = 1
