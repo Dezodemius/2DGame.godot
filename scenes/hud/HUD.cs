@@ -11,29 +11,29 @@ public partial class HUD : CanvasLayer
 
 	public void ShowMessage(string text)
 	{
-		var message = GetNode<Label>("Message");
+		var message = GetNode("MainMenu").GetNode<Label>("Message");
 		message.Text = text;
 		message.Show();
 
-		GetNode<Timer>("MessageTimer").Start();
+	  GetNode("MainMenu").GetNode<Timer>("MessageTimer").Start();
 	}
 
 	public async void ShowGameOver()
 	{
 		ShowMessage("Game Over");
-		GetNode<Label>("ScoreLabel").Hide();
-		GetNode<Label>("RecordLabel").Hide();
+	  GetNode("MainMenu").GetNode<Label>("ScoreLabel").Hide();
+	  GetNode("MainMenu").GetNode<Label>("RecordLabel").Hide();
 
-		var messageTimer = GetNode<Timer>("MessageTimer");
+		var messageTimer = GetNode("MainMenu").GetNode<Timer>("MessageTimer");
 		await ToSignal(messageTimer, Timer.SignalName.Timeout);
 
-		var message = GetNode<Label>("Message");
+		var message = GetNode("MainMenu").GetNode<Label>("Message");
 		message.Text = "Dodge the Creeps!";
 		message.Show();
 
 		await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-		GetNode<Button>("StartButton").Show();
-		GetNode<Button>("ShowRecordsButton").Show();
+	  GetNode("MainMenu").GetNode<Button>("StartButton").Show();
+	  GetNode("MainMenu").GetNode<Button>("ShowRecordsButton").Show();
 	}
 	public void OnNewGame()
 	{
@@ -43,12 +43,12 @@ public partial class HUD : CanvasLayer
 
 	public void UpdateScore(int score)
 	{
-		GetNode<Label>("ScoreLabel").Text = score.ToString();
+	  GetNode("MainMenu").GetNode<Label>("ScoreLabel").Text = score.ToString();
 	}
 
 	public void UpdateRecord(int record)
 	{
-		GetNode<Label>("RecordLabel").Text = $"record: {record}";
+	  GetNode("MainMenu").GetNode<Label>("RecordLabel").Text = $"record: {record}";
 		//string json = Newtonsoft.Json.JsonConvert.SerializeObject(new UserRecord("test", record));
 		//string[] headers = new string[] { "Content-Type: application/json" };
 		//HttpRequest httpRequest = GetNode<HttpRequest>("UpdateRecordRequest");
@@ -73,30 +73,31 @@ public partial class HUD : CanvasLayer
 
 	public void HideRecordLabel()
 	{
-		GetNode<Label>("RecordLabel").Hide();
+	  GetNode("MainMenu").GetNode<Label>("RecordLabel").Hide();
 	}
 
 	private void OnStartButtonPressed()
 	{
-		GetNode<Button>("StartButton").Hide();
-		GetNode<Button>("ShowRecordsButton").Hide();
-		EmitSignal(SignalName.StartGame);
-		GetNode<Label>("RecordLabel").Show();
-		GetNode<Label>("ScoreLabel").Show();
+    GetNode("MainMenu").GetNode<Button>("StartButton").Hide();
+    GetNode("MainMenu").GetNode<Button>("ShowRecordsButton").Hide();
+	  EmitSignal(SignalName.StartGame);
+    GetNode("MainMenu").GetNode<Label>("RecordLabel").Show();
+    GetNode("MainMenu").GetNode<Label>("ScoreLabel").Show();
 	}
 
 	private void OnRecordsButtonPressed()
 	{
-		GetNode<Button>("StartButton").Hide();
-		GetNode<Button>("ShowRecordsButton").Hide();
-		GetNode<Label>("Message").Hide();
-	
+    GetNode<CanvasLayer>("MainMenu").Hide();
+	  // GetNode<Button>("StartButton").Hide();
+	  // GetNode("MainMenu").GetNode<Button>("ShowRecordsButton").Hide();
+	  // GetNode("MainMenu").GetNode<Label>("Message").Hide();
+	  
 	  GetNode<Control>("RecordsTable").Show();
 	}
 
 	private void OnMessageTimerTimeout()
 	{
-		GetNode<Label>("Message").Hide();
+	  GetNode("MainMenu").GetNode<Label>("Message").Hide();
 	}
 }
 

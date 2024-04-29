@@ -13,13 +13,20 @@ events = [SubResource("InputEventAction_emksn")]
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_5n3xw")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="RecordsTable" parent="." instance=ExtResource("3_7oqak")]
+visible = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="MainMenu"]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
+offset_left = -22.5
+offset_right = 22.5
 offset_bottom = 78.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_vxac0")
@@ -28,7 +35,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="MainMenu"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -47,7 +54,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="RecordLabel" type="Label" parent="."]
+[node name="RecordLabel" type="Label" parent="MainMenu"]
 visible = false
 offset_left = 8.0
 offset_right = 152.0
@@ -58,7 +65,7 @@ theme_override_font_sizes/font_size = 26
 text = "record: "
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="MainMenu"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -75,7 +82,7 @@ theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_ark04")
 text = "Start"
 
-[node name="ShowRecordsButton" type="Button" parent="."]
+[node name="ShowRecordsButton" type="Button" parent="MainMenu"]
 custom_minimum_size = Vector2(200, 60)
 anchors_preset = 7
 anchor_left = 0.5
@@ -92,17 +99,12 @@ theme_override_fonts/font = ExtResource("1_vxac0")
 theme_override_font_sizes/font_size = 40
 text = "Records"
 
-[node name="MessageTimer" type="Timer" parent="."]
+[node name="MessageTimer" type="Timer" parent="MainMenu"]
 wait_time = 2.0
 one_shot = true
 
-[node name="UpdateRecordRequest" type="HTTPRequest" parent="."]
+[node name="UpdateRecordRequest" type="HTTPRequest" parent="MainMenu"]
 
-[node name="RecordsTable" parent="." instance=ExtResource("3_7oqak")]
-visible = false
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
-[connection signal="pressed" from="ShowRecordsButton" to="." method="OnRecordsButtonPressed"]
-[connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="MainMenu/ShowRecordsButton" to="." method="OnRecordsButtonPressed"]
+[connection signal="timeout" from="MainMenu/MessageTimer" to="." method="OnMessageTimerTimeout"]
