@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3lx561nmd4pm"]
+[gd_scene load_steps=8 format=3 uid="uid://c3lx561nmd4pm"]
 
 [ext_resource type="PackedScene" uid="uid://du5xpkjwgrvj0" path="res://scenes/records_table/table_row.tscn" id="1_jkk4d"]
-[ext_resource type="PackedScene" uid="uid://bfw3vfrkuplnn" path="res://scenes/records_table/table_head_cell.tscn" id="2_5dbmk"]
+[ext_resource type="PackedScene" uid="uid://bfw3vfrkuplnn" path="res://scenes/records_table/table_heads/table_head_cell.tscn" id="2_5dbmk"]
+[ext_resource type="PackedScene" uid="uid://bor7v1rdb4sm2" path="res://scenes/records_table/table_heads/table_id_head_cell.tscn" id="2_5okis"]
+[ext_resource type="PackedScene" uid="uid://ba05esdy48utq" path="res://scenes/records_table/table_cells/table_cell.tscn" id="2_mw7au"]
+[ext_resource type="PackedScene" uid="uid://djtrrnycvq5ru" path="res://scenes/records_table/table_cells/table_id_cell.tscn" id="4_gpx4a"]
+[ext_resource type="PackedScene" uid="uid://du5fxexmr6lqx" path="res://scenes/records_table/table_user_cells/table_user_id_cell.tscn" id="6_nuusf"]
+[ext_resource type="PackedScene" uid="uid://73xrmx1ko03a" path="res://scenes/records_table/table_user_cells/table_user_cell.tscn" id="7_xnb87"]
 
 [node name="RecordsTable" type="Control"]
 layout_mode = 3
@@ -13,20 +18,18 @@ grow_vertical = 2
 
 [node name="Table" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="TableRow" parent="Table" instance=ExtResource("1_jkk4d")]
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="IdColumnHead" parent="Table/TableRow" instance=ExtResource("2_5dbmk")]
+[node name="TableIdHeadCell" parent="Table/TableRow" instance=ExtResource("2_5okis")]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "Id"
 
 [node name="UserColumnHead" parent="Table/TableRow" instance=ExtResource("2_5dbmk")]
@@ -37,3 +40,33 @@ text = "User"
 layout_mode = 2
 text = "Score
 "
+
+[node name="TableRow2" parent="Table" instance=ExtResource("1_jkk4d")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="TableIdCell" parent="Table/TableRow2" instance=ExtResource("4_gpx4a")]
+layout_mode = 2
+
+[node name="TableCell2" parent="Table/TableRow2" instance=ExtResource("2_mw7au")]
+layout_mode = 2
+text = "231"
+
+[node name="TableCell3" parent="Table/TableRow2" instance=ExtResource("2_mw7au")]
+layout_mode = 2
+text = "3213"
+
+[node name="TableRow3" parent="Table" instance=ExtResource("1_jkk4d")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="TableUserIdCell" parent="Table/TableRow3" instance=ExtResource("6_nuusf")]
+layout_mode = 2
+
+[node name="TableUserCell" parent="Table/TableRow3" instance=ExtResource("7_xnb87")]
+layout_mode = 2
+
+[node name="TableUserCell2" parent="Table/TableRow3" instance=ExtResource("7_xnb87")]
+layout_mode = 2
