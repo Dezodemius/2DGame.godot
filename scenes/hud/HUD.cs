@@ -33,6 +33,7 @@ public partial class HUD : CanvasLayer
 
 		await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
 		GetNode<Button>("StartButton").Show();
+		GetNode<Button>("ShowRecordsButton").Show();
 	}
 	public void OnNewGame()
 	{
@@ -48,20 +49,20 @@ public partial class HUD : CanvasLayer
 	public void UpdateRecord(int record)
 	{
 		GetNode<Label>("RecordLabel").Text = $"record: {record}";
-		string json = Newtonsoft.Json.JsonConvert.SerializeObject(new UserRecord("test", record));
-		string[] headers = new string[] { "Content-Type: application/json" };
-		HttpRequest httpRequest = GetNode<HttpRequest>("UpdateRecordRequest");
-		httpRequest.RequestCompleted += HttpRequestOnRequestCompleted;
-		string body = Json.Stringify(new Godot.Collections.Dictionary
-		{
-			{ "userName", "Godette" },
-			{ "record", 111 }
-		});
-		var error = httpRequest.Request("http://localhost:5056/Records/?userName=egor&record=22", headers, HttpClient.Method.Post, "{\"userName\":\"egor\",\"record\":22}");
-		if (error != Error.Ok)
-		{
-			GD.PushError("An error occurred in the HTTP request.");
-		}
+		//string json = Newtonsoft.Json.JsonConvert.SerializeObject(new UserRecord("test", record));
+		//string[] headers = new string[] { "Content-Type: application/json" };
+		//HttpRequest httpRequest = GetNode<HttpRequest>("UpdateRecordRequest");
+		//httpRequest.RequestCompleted += HttpRequestOnRequestCompleted;
+		//string body = Json.Stringify(new Godot.Collections.Dictionary
+		//{
+			//{ "userName", "Godette" },
+			//{ "record", 111 }
+		//});
+		//var error = httpRequest.Request("http://localhost:5056/Records/?userName=egor&record=22", headers, HttpClient.Method.Post, "{\"userName\":\"egor\",\"record\":22}");
+		//if (error != Error.Ok)
+		//{
+			//GD.PushError("An error occurred in the HTTP request.");
+		//}
 	}
 
 	private void HttpRequestOnRequestCompleted(long result, long responsecode, string[] headers, byte[] body)
@@ -78,6 +79,7 @@ public partial class HUD : CanvasLayer
 	private void OnStartButtonPressed()
 	{
 		GetNode<Button>("StartButton").Hide();
+		GetNode<Button>("ShowRecordsButton").Hide();
 		EmitSignal(SignalName.StartGame);
 		GetNode<Label>("RecordLabel").Show();
 		GetNode<Label>("ScoreLabel").Show();
