@@ -1,6 +1,4 @@
-using System;
 using System.Text;
-using System.Threading;
 using Godot;
 using Timer = Godot.Timer;
 
@@ -9,7 +7,7 @@ public partial class HUD : CanvasLayer
 	[Signal]
 	public delegate void StartGameEventHandler();
 
-	public void ShowMessage(string text)
+  private void ShowMessage(string text)
 	{
 		var message = GetNode("MainMenu").GetNode<Label>("Message");
 		message.Text = text;
@@ -65,13 +63,13 @@ public partial class HUD : CanvasLayer
 		//}
 	}
 
-	private void HttpRequestOnRequestCompleted(long result, long responsecode, string[] headers, byte[] body)
+	private static void HttpRequestOnRequestCompleted(long result, long responsecode, string[] headers, byte[] body)
 	{
 		GD.Print(responsecode);
 		GD.Print(Encoding.UTF8.GetString(body));
 	}
 
-	public void HideRecordLabel()
+  private void HideRecordLabel()
 	{
 	  GetNode("MainMenu").GetNode<Label>("RecordLabel").Hide();
 	}
@@ -81,17 +79,13 @@ public partial class HUD : CanvasLayer
     GetNode("MainMenu").GetNode<Button>("StartButton").Hide();
     GetNode("MainMenu").GetNode<Button>("ShowRecordsButton").Hide();
 	  EmitSignal(SignalName.StartGame);
-    GetNode("MainMenu").GetNode<Label>("RecordLabel").Show();
-    GetNode("MainMenu").GetNode<Label>("ScoreLabel").Show();
+	  GetNode("MainMenu").GetNode<Label>("RecordLabel").Show();
+	  GetNode("MainMenu").GetNode<Label>("ScoreLabel").Show();
 	}
 
 	private void OnRecordsButtonPressed()
 	{
-    GetNode<CanvasLayer>("MainMenu").Hide();
-	  // GetNode<Button>("StartButton").Hide();
-	  // GetNode("MainMenu").GetNode<Button>("ShowRecordsButton").Hide();
-	  // GetNode("MainMenu").GetNode<Label>("Message").Hide();
-	  
+	  GetNode<CanvasLayer>("MainMenu").Hide();
 	  GetNode<Control>("RecordsTable").Show();
 	}
 

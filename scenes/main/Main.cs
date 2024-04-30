@@ -9,7 +9,7 @@ public partial class Main : Node
 	private int _score;
 	private int _record;
 
-	public void GameOver()
+  private void GameOver()
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
@@ -25,7 +25,7 @@ public partial class Main : Node
 		}
 	}
 
-	public void NewGame()
+	private void NewGame()
 	{
 		_score = 0;
 
