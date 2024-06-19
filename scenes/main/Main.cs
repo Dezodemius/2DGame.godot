@@ -1,15 +1,18 @@
+using System.Net.Http;
+using First2DGame;
 using Godot;
+using Newtonsoft.Json;
+using HttpClient = Godot.HttpClient;
 
 public partial class Main : Node
-{	
-
+{
 	[Export]
 	public PackedScene MobScene { get; set; }
 
 	private int _score;
 	private int _record;
 
-  private void GameOver()
+	private void GameOver()
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
@@ -72,5 +75,24 @@ public partial class Main : Node
 	{
 		GetNode<Timer>("MobTimer").Start();
 		GetNode<Timer>("ScoreTimer").Start();
+	}
+
+	private void OnReady()
+	{
+		var httpRequest = GetNode<HttpRequest>("RegisterUserRecordRequest");
+		httpRequest.RequestCompleted += OnRequestCompleted;
+
+		var headers = new string[] { "Content-Type: application/json" };
+		var body = new UserScore(UserInfoManager.Instance.GetUserUniqueName(), 0);
+		
+		httpRequest.Request("http://localhost:5000/Records/AddOrUpdateUserRecord", 
+			headers, 
+			HttpClient.Method.Post, 
+			JsonConvert.SerializeObject(body));
+	}
+
+	private void OnRequestCompleted(long result, long responsecode, string[] headers, byte[] body)
+	{
+		// throw new System.NotImplementedException();
 	}
 }

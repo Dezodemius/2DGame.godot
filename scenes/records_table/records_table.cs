@@ -1,3 +1,4 @@
+using System.Text;
 using Godot;
 
 public partial class records_table : Control
